@@ -17,8 +17,14 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Milestone Brand Colors */
+    --primary: 210 100% 56%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 210 100% 70%;
+
+    --orange: 31 100% 55%;
+    --orange-foreground: 0 0% 100%;
+    --orange-glow: 31 100% 70%;
 
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -31,6 +37,20 @@ All colors MUST be HSL.
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--orange)), hsl(var(--primary)));
+    --gradient-hero: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    --gradient-glass: linear-gradient(145deg, rgba(248, 250, 252, 0.95), rgba(241, 245, 249, 0.95));
+    
+    /* Shadows */
+    --shadow-elegant: 0 10px 30px -10px hsl(var(--primary) / 0.3);
+    --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.4);
+    --shadow-orange: 0 10px 30px -10px hsl(var(--orange) / 0.3);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
