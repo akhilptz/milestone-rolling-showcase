@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milestone Career Planner - Empowering Careers, Enriching Lives</title>
+    <meta name="description" content="Professional career guidance and job placement services. From resume building to skill development, we help you achieve your career dreams." />
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Color System - HSL Values */
+            --background: 0 0% 100%;
+            --foreground: 222.2 84% 4.9%;
+            --muted: 210 40% 98%;
+            --muted-foreground: 215.4 16.3% 46.9%;
+            --popover: 0 0% 100%;
+            --popover-foreground: 222.2 84% 4.9%;
+            --card: 0 0% 100%;
+            --card-foreground: 222.2 84% 4.9%;
+            --border: 214.3 31.8% 91.4%;
+            --input: 214.3 31.8% 91.4%;
+            --primary: 221.2 83.2% 53.3%;
+            --primary-foreground: 210 40% 98%;
+            --primary-glow: 221.2 83.2% 63.3%;
+            --secondary: 210 40% 96%;
+            --secondary-foreground: 222.2 47.4% 11.2%;
+            --accent: 210 40% 96%;
+            --accent-foreground: 222.2 47.4% 11.2%;
+            --destructive: 0 84.2% 60.2%;
+            --destructive-foreground: 210 40% 98%;
+            --ring: 221.2 83.2% 53.3%;
+            --radius: 0.5rem;
+            --orange: 30 100% 50%;
+            --orange-glow: 30 100% 60%;
+            --shadow-elegant: 0 10px 30px -10px hsl(var(--primary) / 0.3);
+            --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+            --gradient-orange: linear-gradient(135deg, hsl(var(--orange)), hsl(var(--orange-glow)));
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .dark {
+            --background: 222.2 84% 4.9%;
+            --foreground: 210 40% 98%;
+            --muted: 217.2 32.6% 17.5%;
+            --muted-foreground: 215 20.2% 65.1%;
+            --popover: 222.2 84% 4.9%;
+            --popover-foreground: 210 40% 98%;
+            --card: 222.2 84% 4.9%;
+            --card-foreground: 210 40% 98%;
+            --border: 217.2 32.6% 17.5%;
+            --input: 217.2 32.6% 17.5%;
+            --primary: 217.2 91.2% 59.8%;
+            --primary-foreground: 222.2 84% 4.9%;
+            --secondary: 217.2 32.6% 17.5%;
+            --secondary-foreground: 210 40% 98%;
+            --accent: 217.2 32.6% 17.5%;
+            --accent-foreground: 210 40% 98%;
+            --destructive: 0 62.8% 30.6%;
+            --destructive-foreground: 210 40% 98%;
+            --ring: 217.2 91.2% 59.8%;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: hsl(var(--foreground));
+            background-color: hsl(var(--background));
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeInUp 0.7s ease-out;
+        }
+
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid hsl(var(--border));
+            transition: var(--transition-smooth);
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-elegant);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: var(--gradient-orange);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: hsl(var(--foreground));
+            transition: var(--transition-smooth);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: hsl(var(--foreground));
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link:hover {
+            color: hsl(var(--primary));
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-orange);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-elegant);
+        }
+
+        .btn-outline {
+            border: 1px solid hsl(var(--border));
+            background: transparent;
+            color: hsl(var(--foreground));
+            padding: 0.75rem 1.5rem;
+            border-radius: 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-outline:hover {
+            background: hsl(var(--primary));
+            color: white;
+            border-color: hsl(var(--primary));
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: hsl(var(--foreground));
+            cursor: pointer;
+        }
+
+        /* Hero Carousel */
+        .hero-carousel {
+            position: relative;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-content {
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .carousel-title {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .carousel-subtitle {
+            font-size: clamp(1.125rem, 4vw, 1.5rem);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 10;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .carousel-dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            background: var(--gradient-orange);
+            transition: width 5s linear;
+            z-index: 10;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            background: var(--gradient-orange);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: hsl(var(--muted-foreground));
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(135deg, hsl(var(--background)), hsl(var(--secondary) / 0.2));
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .about-card {
+            background: linear-gradient(145deg, white, hsl(var(--secondary) / 0.3));
+            padding: 2.5rem;
+            border-radius: 1.25rem;
+            box-shadow: var(--shadow-elegant);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+            border: 1px solid hsl(var(--border));
+        }
+
+        .about-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px hsl(var(--primary) / 0.15);
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-orange);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .about-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .about-card-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            transition: var(--transition-smooth);
+        }
+
+        .about-card:hover .about-card-icon {
+            animation: pulse 2s infinite;
+        }
+
+        .about-card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: hsl(var(--primary));
+            margin-bottom: 1rem;
+            text-align: center;
+            transition: var(--transition-smooth);
+        }
+
+        .about-card:hover .about-card-title {
+            color: hsl(var(--orange));
+        }
+
+        .about-card-text {
+            color: hsl(var(--muted-foreground));
+            line-height: 1.7;
+            transition: var(--transition-smooth);
+        }
+
+        .about-card:hover .about-card-text {
+            color: hsl(var(--foreground));
+        }
+
+        /* Services Section */
+        .services {
+            background: white;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .service-card {
+            background: linear-gradient(145deg, hsl(var(--background)), hsl(var(--secondary) / 0.5));
+            padding: 2.5rem;
+            border-radius: 1.25rem;
+            box-shadow: var(--shadow-elegant);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .service-icon {
+            width: 5rem;
+            height: 5rem;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+            transition: var(--transition-smooth);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .service-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: hsl(var(--primary));
+            text-align: center;
+            margin-bottom: 2rem;
+            transition: var(--transition-smooth);
+        }
+
+        .service-card:hover .service-title {
+            color: hsl(var(--orange));
+        }
+
+        .service-list {
+            list-style: none;
+        }
+
+        .service-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            color: hsl(var(--muted-foreground));
+            font-weight: 500;
+            transition: var(--transition-smooth);
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+        }
+
+        .service-card:hover .service-list li {
+            transform: translateX(5px);
+            background: hsl(var(--secondary) / 0.8);
+        }
+
+        .service-list li::before {
+            content: '•';
+            color: hsl(var(--orange));
+            font-weight: bold;
+            width: 1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, hsl(var(--secondary) / 0.2), hsl(var(--background)));
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 1.25rem;
+            box-shadow: var(--shadow-elegant);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-orange);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .contact-icon {
+            width: 5rem;
+            height: 5rem;
+            background: var(--gradient-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 2rem;
+            transition: var(--transition-smooth);
+        }
+
+        .contact-card:hover .contact-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .contact-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: hsl(var(--primary));
+            margin-bottom: 1rem;
+            transition: var(--transition-smooth);
+        }
+
+        .contact-card:hover .contact-title {
+            color: hsl(var(--orange));
+        }
+
+        .contact-info {
+            color: hsl(var(--muted-foreground));
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            transition: var(--transition-smooth);
+        }
+
+        .contact-card:hover .contact-info {
+            color: hsl(var(--foreground));
+        }
+
+        .contact-btn {
+            background: var(--gradient-orange);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-elegant);
+        }
+
+        /* Footer */
+        .footer {
+            background: hsl(222.2 84% 4.9%);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-section p,
+        .footer-section li {
+            color: hsl(210 40% 80%);
+            margin-bottom: 0.5rem;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-section a {
+            color: hsl(210 40% 80%);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-section a:hover {
+            color: hsl(var(--orange));
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: hsl(217.2 32.6% 17.5%);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .social-icon:hover {
+            background: var(--gradient-orange);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid hsl(217.2 32.6% 17.5%);
+            padding-top: 1rem;
+            text-align: center;
+            color: hsl(210 40% 60%);
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 4rem;
+            height: 4rem;
+            background: linear-gradient(135deg, #25D366, #19f449);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+            z-index: 1000;
+            transition: var(--transition-smooth);
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            animation: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .carousel-title {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                padding: 2rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .whatsapp-btn {
+                width: 3.5rem;
+                height: 3.5rem;
+                bottom: 1.5rem;
+                right: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .carousel-title {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .service-card,
+            .about-card,
+            .contact-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">M</div>
+                    <span class="logo-text">Milestone</span>
+                </div>
+                
+                <nav class="nav">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#services" class="nav-link">Services</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </nav>
+                
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    ☰
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Carousel -->
+    <section id="home" class="hero-carousel">
+        <div class="carousel-container">
+            <div class="carousel-slide active" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMDgwIiB2aWV3Qm94PSIwIDAgMTkyMCAxMDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8ZGVmcz4KPGJ5aWRHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgo8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMUUyOTNCIi8+CjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBGMTcyQSIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+CjxyZWN0IHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIGZpbGw9InVybCgjYmcpIi8+Cjx0ZXh0IHg9Ijk2MCIgeT0iNTQwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNjQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Q2FyZWVyIFBsYW5uaW5nPC90ZXh0Pgo8L3N2Zz4K');">
+                <div class="carousel-overlay">
+                    <div class="carousel-content">
+                        <h1 class="carousel-title">Expert Career Planning</h1>
+                        <p class="carousel-subtitle">Strategic guidance to navigate your professional journey and achieve your career goals</p>
+                        <a href="#contact" class="btn-primary">Start Your Journey</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="carousel-slide" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMDgwIiB2aWV3Qm94PSIwIDAgMTkyMCAxMDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8ZGVmcz4KPGJ5aWRHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgo8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMUUyOTNCIi8+CjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBGMTcyQSIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+CjxyZWN0IHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIGZpbGw9InVybCgjYmcpIi8+Cjx0ZXh0IHg9Ijk2MCIgeT0iNTQwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNjQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RmFtaWx5IFN1Y2Nlc3M8L3RleHQ+Cjwvc3ZnPgo=');">
+                <div class="carousel-overlay">
+                    <div class="carousel-content">
+                        <h1 class="carousel-title">Family Success Stories</h1>
+                        <p class="carousel-subtitle">Building stronger families through better career choices and financial planning</p>
+                        <a href="#services" class="btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="carousel-slide" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMDgwIiB2aWV3Qm94PSIwIDAgMTkyMCAxMDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8ZGVmcz4KPGJ5aWRHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgo8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMUUyOTNCIi8+CjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBGMTcyQSIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+CjxyZWN0IHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIGZpbGw9InVybCgjYmcpIi8+Cjx0ZXh0IHg9Ijk2MCIgeT0iNTQwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNjQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+UGFydG5lcnNoaXA8L3RleHQ+Cjwvc3ZnPgo=');">
+                <div class="carousel-overlay">
+                    <div class="carousel-content">
+                        <h1 class="carousel-title">Strategic Partnerships</h1>
+                        <p class="carousel-subtitle">Connecting with industry leaders to create opportunities for our clients</p>
+                        <a href="#about" class="btn-primary">Our Network</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="carousel-slide" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMDgwIiB2aWV3Qm94PSIwIDAgMTkyMCAxMDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8ZGVmcz4KPGJ5aWRHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgo8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMUUyOTNCIi8+CjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBGMTcyQSIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+CjxyZWN0IHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIGZpbGw9InVybCgjYmcpIi8+Cjx0ZXh0IHg9Ijk2MCIgeT0iNTQwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNjQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+T3VyIFNlcnZpY2VzPC90ZXh0Pgo8L3N2Zz4K');">
+                <div class="carousel-overlay">
+                    <div class="carousel-content">
+                        <h1 class="carousel-title">Comprehensive Services</h1>
+                        <p class="carousel-subtitle">From career planning to job placement, we provide end-to-end support</p>
+                        <a href="#services" class="btn-primary">Explore Services</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="carousel-nav">
+            <div class="carousel-dot active" onclick="goToSlide(0)"></div>
+            <div class="carousel-dot" onclick="goToSlide(1)"></div>
+            <div class="carousel-dot" onclick="goToSlide(2)"></div>
+            <div class="carousel-dot" onclick="goToSlide(3)"></div>
+        </div>
+        
+        <div class="progress-bar" id="progressBar"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Us</h2>
+                <p class="section-subtitle">Empowering careers and enriching lives through personalized guidance and comprehensive support</p>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-card-icon">👥</div>
+                    <h3 class="about-card-title">Who We Are</h3>
+                    <p class="about-card-text">
+                        We are a team of enthusiastic career consultants who are passionate about helping youngsters to pave the way towards a prosperous future. With our guidance, you won't just find a job; you'll embark on a journey of growth, development, and achievement.
+                    </p>
+                </div>
+                
+                <div class="about-card">
+                    <div class="about-card-icon">🎯</div>
+                    <h3 class="about-card-title">Our Purpose</h3>
+                    <p class="about-card-text">
+                        Our purpose is simple yet powerful: To EMPOWER you. We recognize the distinctiveness of every individual, along with their aspirations and dreams. This is why we provide a spectrum of services, from job consultancy to financial education, tailored precisely to address your requirements and ambitions.
+                    </p>
+                </div>
+                
+                <div class="about-card">
+                    <div class="about-card-icon">⭐</div>
+                    <h3 class="about-card-title">Why Choose Us</h3>
+                    <p class="about-card-text">
+                        With a deep understanding of the challenges individuals face in their career paths, we tailor our services to provide tangible solutions. Whether you're a recent graduate seeking direction or a professional aiming for growth, Milestone Career Planner is your guide to unlocking your true potential.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-subtitle">Comprehensive career solutions designed to guide you from planning to placement and beyond</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🎓</div>
+                    <h3 class="service-title">Milestone Academy</h3>
+                    <ul class="service-list">
+                        <li>Financial Management</li>
+                        <li>Skill Development</li>
+                        <li>Leadership and Management Training</li>
+                        <li>Communication</li>
+                        <li>Investment and Wealth Management</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">💼</div>
+                    <h3 class="service-title">Milestone Jobs</h3>
+                    <ul class="service-list">
+                        <li>Resume Building</li>
+                        <li>Job Search Assistance</li>
+                        <li>Interview Preparation</li>
+                        <li>Post Placement Support</li>
+                        <li>Office Etiquettes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contact Us</h2>
+                <p class="section-subtitle">Get in touch with us for career guidance and support. We're here to help you achieve your dreams.</p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📞</div>
+                    <h3 class="contact-title">Phone</h3>
+                    <p class="contact-info">+91 7012491144</p>
+                    <a href="tel:+917012491144" class="contact-btn">Call Now</a>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h3 class="contact-title">Email</h3>
+                    <p class="contact-info">info@milestonecp.com</p>
+                    <a href="mailto:info@milestonecp.com" class="contact-btn">Send Email</a>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">💬</div>
+                    <h3 class="contact-title">WhatsApp</h3>
+                    <p class="contact-info">+91 7012491144</p>
+                    <a href="https://wa.me/917012491144?text=Hi%20there!%20I%20would%20like%20to%20know%20more%20about%20your%20services." target="_blank" class="contact-btn">Chat Now</a>
+                </div>
+            </div>
+            
+            <!-- Office Info -->
+            <div style="margin-top: 4rem; text-align: center;">
+                <div class="contact-card" style="max-width: 500px; margin: 0 auto;">
+                    <h3 class="contact-title">Our Office</h3>
+                    <div style="color: hsl(var(--muted-foreground)); line-height: 1.6;">
+                        <p>8B, Sunparul Blueberry Dezira</p>
+                        <p>Infopark Express way, Kakkanad</p>
+                        <p>Kerala 682039</p>
+                        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid hsl(var(--border));">
+                            <p><strong>📞 +91 9074953258</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <div class="logo-icon">M</div>
+                        <span style="font-size: 1.25rem; font-weight: 700;">Milestone</span>
+                    </div>
+                    <p>Empowering careers and enriching lives through personalized guidance and comprehensive support.</p>
+                    <div class="social-icons">
+                        <a href="https://www.linkedin.com/company/milestone-career-planner" target="_blank" class="social-icon">📘</a>
+                        <a href="https://www.instagram.com/risewithmcp" target="_blank" class="social-icon">📷</a>
+                        <a href="https://www.facebook.com/milestone.career.planner?mibextid=ZbWKwL" target="_blank" class="social-icon">📘</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li>Career Consultation</li>
+                        <li>Job Placement</li>
+                        <li>Skill Development</li>
+                        <li>Financial Planning</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>8B, Sunparul Blueberry Dezira<br>
+                    Infopark Express way, Kakkanad<br>
+                    Kerala 682039</p>
+                    <p>📞 +91 7012491144</p>
+                    <p>📞 +91 9074953258</p>
+                    <p>📧 info@milestonecp.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Milestone Career Planner. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/917012491144?text=Hi%20there!%20I%20would%20like%20to%20know%20more%20about%20your%20services." target="_blank" class="whatsapp-btn" title="Chat with us on WhatsApp">
+        💬
+    </a>
+
+    <script>
+        // Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+        const progressBar = document.getElementById('progressBar');
+        let carouselInterval;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+            progressBar.style.width = '0%';
+            setTimeout(() => {
+                progressBar.style.width = '100%';
+            }, 100);
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            showSlide(currentSlide);
+            resetCarouselTimer();
+        }
+
+        function startCarousel() {
+            carouselInterval = setInterval(nextSlide, 5000);
+        }
+
+        function resetCarouselTimer() {
+            clearInterval(carouselInterval);
+            startCarousel();
+        }
+
+        // Navigation functionality
+        function toggleMobileMenu() {
+            // Simple mobile menu toggle - you can expand this
+            alert('Mobile menu would open here');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Start carousel
+            showSlide(0);
+            startCarousel();
+
+            // Observe cards for animation
+            const cards = document.querySelectorAll('.about-card, .service-card, .contact-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = `all 0.6s ease ${index * 0.1}s`;
+                observer.observe(card);
+            });
+        });
+
+        // Pause carousel on hover
+        const carousel = document.querySelector('.hero-carousel');
+        carousel.addEventListener('mouseenter', () => clearInterval(carouselInterval));
+        carousel.addEventListener('mouseleave', startCarousel);
+    </script>
+</body>
+</html>
